@@ -168,11 +168,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202204181145283_initialtb.cs" />
-    <Compile Include="Migrations\202204181145283_initialtb.designer.cs">
-      <DependentUpon>202204181145283_initialtb.cs</DependentUpon>
+    <Compile Include="Migrations\202205021259373_emptb.cs" />
+    <Compile Include="Migrations\202205021259373_emptb.designer.cs">
+      <DependentUpon>202205021259373_emptb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205021301195_addresstb.cs" />
+    <Compile Include="Migrations\202205021301195_addresstb.designer.cs">
+      <DependentUpon>202205021301195_addresstb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,8 +266,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204181145283_initialtb.resx">
-      <DependentUpon>202204181145283_initialtb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205021259373_emptb.resx">
+      <DependentUpon>202205021259373_emptb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205021301195_addresstb.resx">
+      <DependentUpon>202205021301195_addresstb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

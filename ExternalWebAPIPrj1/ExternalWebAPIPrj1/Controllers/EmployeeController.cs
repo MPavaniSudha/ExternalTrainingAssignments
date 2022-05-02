@@ -17,29 +17,51 @@ namespace ExternalWebAPIPrj1.Controllers
         public IHttpActionResult AddEmp([FromBody] Employee empl)
         {
             ec.employee.Add(empl);
-            ec.SaveChanges();
-            if (empl.EmpType=="Permanent")
+            if (empl.EmpType == "Permanent")
             {
-                empl.Bonus_Status = "Eligible";
+                empl.Bonus_Status = true;
                 ec.SaveChanges();
                 return Ok(empl);
             }
-            else
+            else if (empl.EmpType == "Contractor")
             {
-                empl.Bonus_Status = "Not-Eligible";
+                empl.Bonus_Status = false;
                 ec.SaveChanges();
             }
             return Ok(empl);
         }
-       
+
+        [Route("AddAddress")]
+        [HttpPost]
+        public IHttpActionResult AddAddress([FromBody] Address addr)
+        {
+            try
+            {
+                ec.address.Add(addr);
+                ec.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Insertion Failed");
+            }
+            return Ok(addr);
+        }
         [Route("getempbyid")]
         [HttpGet]
         public IHttpActionResult GetEmpById(int id)
         {
-            Employee employee = ec.employee.Where(p => p.EmpNO == id) .FirstOrDefault();
-            if (employee == null)
+            Employee employee = new Employee();
+            try
             {
-                return NotFound();
+                employee = ec.employee.Find(id);
+                if (employee == null)
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Please Enter Valid Id");
             }
             return Ok(employee);
         }
@@ -50,26 +72,5 @@ namespace ExternalWebAPIPrj1.Controllers
             var emp = ec.employee.ToList();
             return Ok(emp);
         }
-
-        [Route("AddAddress")]
-        [HttpPut]
-        public IHttpActionResult AddAddres( int id,[FromBody] Employee emp)
-        {
-            if (emp.EmpNO == id)
-            {
-                ec.Entry(emp).State = System.Data.Entity.EntityState.Modified;
-                ec.SaveChanges();
-            }
-            else if(emp!= null)
-            {
-                return Content(HttpStatusCode.Accepted, emp);
-            }
-            else
-            {
-                return NotFound();
-            }
-            return Ok(emp);
-        }
-
     }
 }

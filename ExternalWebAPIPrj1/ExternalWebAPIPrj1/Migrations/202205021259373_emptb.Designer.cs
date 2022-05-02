@@ -7,13 +7,13 @@ namespace ExternalWebAPIPrj1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class initialtb : IMigrationMetadata
+    public sealed partial class emptb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initialtb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(emptb));
         
         string IMigrationMetadata.Id
         {
-            get { return "202204181145283_initialtb"; }
+            get { return "202205021259373_emptb"; }
         }
         
         string IMigrationMetadata.Source

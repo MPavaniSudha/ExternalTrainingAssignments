@@ -10,7 +10,7 @@ using System.Web.Http.Results;
 namespace WebAPITestsPrj
 {
     [TestClass]
-    public class UnitTest1
+    public class EmployeeControllerTest
     {
         [TestMethod]
         public void TestMethod1()
@@ -19,7 +19,12 @@ namespace WebAPITestsPrj
             var controller = new EmployeeController();
             Employee emp = new Employee
             {
+                FirstName="Valli",
+                MiddleName="Sri",
+                LastName="Kethineedi",
                 EmpType = "Permanent",
+                Age=25,
+                Gender="Female"
             };
             //Act On Test
             IHttpActionResult acr = controller.AddEmp(emp);
@@ -27,7 +32,7 @@ namespace WebAPITestsPrj
             //Assert the result
             Assert.IsNotNull(empl);
             Assert.IsNotNull(empl.Content);
-            Assert.AreEqual("Eligible", empl.Content.Bonus_Status);  
+            Assert.AreEqual(true, empl.Content.Bonus_Status);  
         }
 
         [TestMethod]
@@ -37,7 +42,12 @@ namespace WebAPITestsPrj
             var controller = new EmployeeController();
             Employee emp = new Employee
             {
+                FirstName = "Dharmik",
+                MiddleName = "Vishal",
+                LastName = "Sandaka",
                 EmpType = "Contractor",
+                Age = 28,
+                Gender = "Male"
             };
             //Act On Test
             IHttpActionResult acr = controller.AddEmp(emp);
@@ -45,7 +55,7 @@ namespace WebAPITestsPrj
             //Assert the result
             Assert.IsNotNull(empl);
             Assert.IsNotNull(empl.Content);
-            Assert.AreEqual("Not-Eligible", empl.Content.Bonus_Status);
+            Assert.AreEqual(false, empl.Content.Bonus_Status);
         }
 
         [TestMethod]
@@ -54,29 +64,33 @@ namespace WebAPITestsPrj
             // Arrange  
             var controller = new EmployeeController();
             // Act on Test  
-            var response = controller.GetEmpById(101);
+            var response = controller.GetEmpById(2);
             var cr = response as OkNegotiatedContentResult<Employee>;
             // Assert the result  
             Assert.IsNotNull(cr);
             Assert.IsNotNull(cr.Content);
-            Assert.AreEqual("Pavani", cr.Content.FirstName);
+            Assert.AreEqual("Swetha", cr.Content.FirstName);
         }
         [TestMethod]
         public void TestMethod4()
         {
             //Arrange
             var controller = new EmployeeController();
-            Employee emp=new Employee
+            Address addr = new Address
             {
-               Address= "143/67,gandhi nagar,Bangalore",
+                StreetName = "Bala Nagar",
+                DoorNo = "146/7D",
+                City = "Hyderabad",
+                State = "Telangana",
+                EmpNo = 4
             };
-            //Act on test
-            IHttpActionResult res = controller.AddAddres(103,emp);
-            var cr = res as NegotiatedContentResult<Employee>;
-            // Assert the result 
-            Assert.IsNotNull(cr);
-            Assert.AreEqual(HttpStatusCode.Accepted, cr.StatusCode);
-            Assert.IsNotNull(cr.Content);
+            //Act On Test
+            IHttpActionResult acr = controller.AddAddress(addr);
+            var addrs = acr as OkNegotiatedContentResult<Address>;
+            //Assert the result
+            Assert.IsNotNull(addrs);
+            Assert.IsNotNull(addrs.Content);
+            Assert.AreEqual(4, addrs.Content.EmpNo);
         }
     }
 }

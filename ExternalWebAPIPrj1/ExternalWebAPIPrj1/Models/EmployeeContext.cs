@@ -13,5 +13,6 @@ namespace ExternalWebAPIPrj1.Models
 
         }
         public DbSet<Employee> employee { get; set; }
+        public DbSet<Address> address { get; set; }
     }
 }
