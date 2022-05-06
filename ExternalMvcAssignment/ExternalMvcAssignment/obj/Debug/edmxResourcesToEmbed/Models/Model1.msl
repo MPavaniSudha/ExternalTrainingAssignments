@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExternalAsmDBModelStoreContainer" CdmEntityContainer="ProductStoreDBEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ExternalAsmDBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Cid" ColumnName="Cid" />
+          <ScalarProperty Name="CName" ColumnName="CName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="ExternalAsmDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Pid" ColumnName="Pid" />
+          <ScalarProperty Name="PName" ColumnName="PName" />
+          <ScalarProperty Name="CatId" ColumnName="CatId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="ExternalAsmDBModel.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="Unitid" ColumnName="Unitid" />
+          <ScalarProperty Name="UName" ColumnName="UName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

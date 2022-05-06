@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExternalAsmDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="Int32" Nullable="false" />
+    <Property Name="CName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__CatId__44FF419A" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Pid" />
+    </Key>
+    <Property Name="Pid" Type="Int32" Nullable="false" />
+    <Property Name="PName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CatId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitId" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__CatId__44FF419A" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK__Product__UnitId__45F365D3" FromRole="Product" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Unitid" />
+    </Key>
+    <Property Name="Unitid" Type="Int32" Nullable="false" />
+    <Property Name="UName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__UnitId__45F365D3" FromRole="Unit" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK__Product__CatId__44FF419A">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__UnitId__45F365D3">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Unitid" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProductStoreDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <AssociationSet Name="FK__Product__CatId__44FF419A" Association="Self.FK__Product__CatId__44FF419A">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__UnitId__45F365D3" Association="Self.FK__Product__UnitId__45F365D3">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
