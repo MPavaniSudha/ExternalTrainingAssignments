@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BlackJackGameAssesment.Models.Session>
+
+@{
+    ViewBag.Title = "SessionReport";
+}
+<center>
+    <style>
+        body {
+            background-color: bisque;
+        }
+    </style>
+    <h2>SessionReport</h2>
+
+    <table class="table" cellpadding="4" cellspacing="4" border="2">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DealerTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameResult)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlayerTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DealerTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameResult)
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+    <button type="button" value="Go Back" style="background-color:crimson; font-size:larger;" onclick="location.href ='@Url.Action("Stand","Game")'">GO Back</button>
+</center>
+
+

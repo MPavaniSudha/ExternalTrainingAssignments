@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BlackJackDBModelStoreContainer" CdmEntityContainer="BlackJackDBEntities">
+    <EntitySetMapping Name="Cards">
+      <EntityTypeMapping TypeName="BlackJackDBModel.Card">
+        <MappingFragment StoreEntitySet="Card">
+          <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+          <ScalarProperty Name="CardName" ColumnName="CardName" />
+          <ScalarProperty Name="CardValue" ColumnName="CardValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sessions">
+      <EntityTypeMapping TypeName="BlackJackDBModel.Session">
+        <MappingFragment StoreEntitySet="Session">
+          <ScalarProperty Name="GameNo" ColumnName="GameNo" />
+          <ScalarProperty Name="PlayerTotal" ColumnName="PlayerTotal" />
+          <ScalarProperty Name="DealerTotal" ColumnName="DealerTotal" />
+          <ScalarProperty Name="GameResult" ColumnName="GameResult" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
